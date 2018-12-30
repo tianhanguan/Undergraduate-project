@@ -1,0 +1,40 @@
+#Returns a probability mass function of Xn in the vector form
+#N = # of bins
+#[a,b] = interval
+Distri <- function(M,N,a,b,x0) {
+	count <- rep(0,N)
+	delta = (b-a)/N
+	fx = x0
+
+	for (i in 1:M) {
+		fx = 4*fx*(1-fx)
+		k = ceiling((fx-a)/delta)
+		count <- replace(count,k,count[k]+1)
+	}		
+count/M
+}
+		
+
+#Create the xlabels for the pmf
+Xlabel <- function(a,b,N) {
+	x = seq(a+1/N,b,1/N)
+	x
+}
+x = Xlabel(0,1,1000)
+	
+#Test the function
+pmf = Distri(4000000,1000,0,1,0.7)
+#Check it is a valid pmf
+sum(pmf)
+plot(x,pmf,main="Spatial distribution of Logistic map with a=4",xlab="x",ylab="pk",xlim=c(0,1))
+
+
+
+
+		
+					
+
+
+
+
+

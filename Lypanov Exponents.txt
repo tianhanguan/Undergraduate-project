@@ -1,0 +1,44 @@
+#Display the numerical approximations of the Lyapunov exponent of the chaotic trajectory
+#using the time average method 
+lyapunov <- function(n,x0) {	
+	fx = x0
+	rs = 0
+	orbit = numeric()
+	m = seq(1,n,1)
+	for (i in 1:n) {
+		fx = exp(-7.5*fx^2)-0.3
+		fxprime = log(abs(-15*fx*exp(-7.5*fx^2)))
+		rs = rs + fxprime
+		orbit = c(orbit,rs)
+	}
+	orbit/m
+}
+
+l = lyapunov(100000,0.1)
+plot(l,main="Numerical Approximations of the Lyapunov exponent of the Chaotic Trajectory",xlab="Time",ylab="Lyapunov exponent")
+
+#################################################################################################################################
+
+#Find the Lyapunov exponent for various values of x over the domain
+lyapunov2 <- function(n,x) {	
+	lya = numeric()
+	for (j in 1:length(x)) {
+		fx = x[j]
+		rs = 0
+			for (i in 1:n) {
+				fx = exp(-7.5*fx^2)-0.3
+				fxprime = log(abs(-15*fx*exp(-7.5*fx^2)))
+				rs = rs + fxprime
+			}
+		lya = c(lya,rs/n)
+	}
+lya
+}
+#Create the xlabels for the pmf
+Xlabel <- function(a,b,N) {
+	x = seq(a+(b-a)/N,b,(b-a)/N)
+	x
+}
+x = Xlabel(exp(-7.5*0.7^2)-0.3,0.7,50000)
+l2 = lyapunov2(1000,x)	
+plot(x,l2,main="Lyapunov exponent of values of x in the domain [A,0.7]",xlab="X",ylab="Lyapunov exponent")	

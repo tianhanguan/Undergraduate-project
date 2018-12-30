@@ -1,0 +1,72 @@
+#Calculate the time average of g(x)=x over the chaotic trajectory of F(x)
+Timeaverage <- function(N,x0) {
+	fx = x0
+	rs = 0
+	for (i in 1:N) {
+		fx = exp(-7.5*fx^2)-0.3
+		rs = rs + fx
+	}		
+rs/N
+}
+	
+Timeaverage(1000000,0.1)
+Timeaverage(10000000,0.1)
+
+
+#Calculate the time average of g(x)=x^2 over the chaotic trajectory of F(x)
+Timeaverage <- function(N,x0) {
+	fx = x0
+	rs = 0
+	for (i in 1:N) {
+		fx = exp(-7.5*fx^2)-0.3
+		rs = rs + fx^2
+	}		
+rs/N
+}
+	
+Timeaverage(1000000,0.1)
+Timeaverage(10000000,0.1)
+
+
+#Calculate the time average of g(x)=e^x over the chaotic trajectory of F(x)
+Timeaverage <- function(N,x0) {
+	fx = x0
+	rs = 0
+	for (i in 1:N) {
+		fx = exp(-7.5*fx^2)-0.3
+		rs = rs + exp(fx)
+	}		
+rs/N
+}
+	
+Timeaverage(1000000,0.1)
+Timeaverage(10000000,0.1)
+
+#Calculate the time average of g(x)=sin(x) over the chaotic trajectory of F(x)
+Timeaverage <- function(N,x0) {
+	fx = x0
+	rs = 0
+	for (i in 1:N) {
+		fx = exp(-7.5*fx^2)-0.3
+		rs = rs + log(abs(-15*fx*exp(-7.5*fx^2)))
+	}		
+rs/N
+}
+	
+Timeaverage(1000000,0.1)
+Timeaverage(10000000,0.1)
+
+
+
+
+
+
+
+
+		
+					
+
+
+
+
+
